@@ -1,0 +1,14 @@
+#!/bin/sh
+#PBS -o out/blast$PBS_JOBID.o
+#PBS -e error/blast$PBS_JOBID.err
+#PBS -l walltime=24:00:00
+#PBS -l pmem=3gb
+#PBS -l nodes=1:ppn=8
+
+cd $PBS_O_WORKDIR
+
+module load ncbi_blast
+
+blastn -db genomic_single_copy_db -query $FASTAFILE -outfmt 6 -out BLASTREPORT$COUNTER 
+
+
