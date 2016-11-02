@@ -1,0 +1,14 @@
+#!/bin/sh
+#PBS -o blast.o
+#PBS -e blast.err
+#PBS -l walltime=2:00:00
+#PBS -l pmem=500mb
+#PBS -l nodes=1:ppn=4
+
+cd $PBS_O_WORKDIR
+
+module load ncbi_blast
+
+blastn -db Cmax_genome_db -query flanking_seqs_with_scafID.fa -outfmt 10 -out blast_report 
+
+
